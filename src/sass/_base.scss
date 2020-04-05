@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  // font-size: 18px;
+
+  font-size: 62.5%; //1rem = 10px; 10px/16px = 62.5%
+
+  @include respond(tab-land) {
+    font-size: 56.25%; //1rem  = 9px; 9/16 = 56.25%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; //1rem  = 8px; 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem  = 12px; 12/16 = 75%
+  }
+}
+:root {
+  --primary: hsl(171, 66%, 44%);
+  --primary-2: hsl(233, 100%, 69%);
+
+  // ### Neutral
+  --dark-gray: hsl(210, 10%, 33%);
+  --gray-blue: hsl(201, 11%, 66%);
+}
+
+body {
+  position: relative;
+  box-sizing: border-box;
+  // padding: 3rem;
+  background-color: white;
+  color: var(--gray-blue);
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 1.8rem; //  18px
+  &::after {
+    content: "";
+    background-image: url("../images/bg-header-desktop.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    position: absolute;
+    top: -192px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+  }
+
+  @include respond(tab-port) {
+    box-sizing: border-box;
+    padding: 0;
+  }
+}
+h1,
+h2,
+h3,
+h4 {
+  color: var(--dark-gray);
+}
+h1,
+h2 {
+  text-align: center;
+}
+h1 {
+  padding: 4rem 0 1rem 0;
+}
+h2 {
+  margin-bottom: 1.6rem;
+}
+
+p {
+  margin: 1rem 0;
+  max-width: 75rem;
+  text-align: center;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns:
+    minmax(2rem, 1fr) 1fr
+    minmax(min-content, 104rem)
+    1fr minmax(2rem, 1fr);
+
+  grid-row-gap: 12rem;
+  grid-column-gap: 1rem;
+  justify-content: center;
+  align-content: center;
+
+  margin-top: 12rem;
+  width: 100vw;
+  background-color: var(--very-light-grayish-blue);
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.workflow-card {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  flex: 1 0 1;
+}
+.section {
+  &-1,
+  &-2,
+  &-3,
+  &-4,
+  &-5,
+  &-6,
+  &-footer-nav {
+    display: grid;
+    grid-template-rows: auto;
+    grid-row-gap: 1rem;
+    grid-column-gap: 4rem;
+    justify-items: center;
+    align-items: center;
+  }
+  &-1,
+  &-6 {
+    grid-column: 3 / span 1;
+    grid-template-columns: 1fr;
+  }
+  &-3,
+  &-4,
+  &-5 {
+    grid-column: 2 / 5;
+  }
+
+  &-1 {
+    img {
+      width: auto;
+    }
+  }
+  &-2 {
+    grid-column: 1/ 5;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-evenly;
+    height: 100%;
+
+    &-2 p {
+      text-align: left;
+    }
+  }
+
+  &-4 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 10rem;
+    align-items: flex-start;
+  }
+  &-footer-nav {
+    grid-column: 1/-1;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.025);
+    padding: 5rem 0 2rem 0;
+    .icon {
+      width: 5rem;
+      margin: 0;
+    }
+    & ul {
+      list-style-type: none;
+    }
+    & li {
+      margin-bottom: 2rem;
+    }
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  &-5 {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4rem 1rem;
+    img {
+      width: 50%;
+    }
+  }
+
+  &-heading {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+}
+.social .icon {
+  width: 2rem;
+  margin-right: 0.5rem;
+}
+.icon {
+  width: 4rem;
+  margin-bottom: 4rem;
+}
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+@include respond(phone) {
+  .section-5 {
+    grid-column: 3 / span 1;
+    grid-template-columns: 1fr;
+  }
+}
+@include respond(med-phone) {
+  .section {
+    &-2,
+    &-3,
+    &-4,
+    &-5 {
+      grid-column: 3 / span 1;
+      grid-template-columns: 1fr;
+    }
+  }
+  .section-device {
+    grid-column: 2/5;
+  }
+  .section-footer-nav {
+    li {
+      text-align: center;
+    }
+  }
+  .section-2-2 {
+    h3,
+    p {
+      text-align: center;
+    }
+  }
+  .side-by-side {
+    grid-template-columns: 1fr;
+  }
+}
